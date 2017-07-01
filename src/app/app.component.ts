@@ -6,8 +6,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <div>Hover and click on a Star!</div>
+    <div>Click on a Star!</div>
     <star-rater></star-rater>
+    <br>
+    <br>
+    <br>
     <div>Defaults work as well!</div>
     <star-rater
       [display]="4"
