@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'star-rater',
@@ -69,58 +69,11 @@ import { Component, Input } from '@angular/core';
 
 export class StarRater {
   @Input() display = 0;
-
-  hide(num) {
-    this.display = num;
-  }
-
-  show(num) {
-    this.display = 0;
-  }
+  @Output() selection = new EventEmitter();
 
   onSelect(num) {
     this.display = num;
+    this.selection.emit(this.display);
   }
 
 }
-
-    // <span
-    //   *ngIf="display > 0"
-    //   (mouseenter)="hide(1)"
-    //   (mouseleave)="show(0)"
-    //   (click)="onSelect(1)"
-    //   class="black"
-    //   >★
-    // </span>
-    // <span
-    //   *ngIf="display > 1"
-    //   (mouseenter)="hide(2)"
-    //   (mouseleave)="show(1)"
-    //   (click)="onSelect(2)"
-    //   class="black"
-    //   >★
-    // </span>
-    // <span
-    //   *ngIf="display > 2"
-    //   (mouseenter)="hide(3)"
-    //   (mouseleave)="show(2)"
-    //   (click)="onSelect(3)"
-    //   class="black"
-    //   >★
-    // </span>
-    // <span
-    //   *ngIf="display > 3"
-    //   (mouseenter)="hide(4)"
-    //   (mouseleave)="show(3)"
-    //   (click)="onSelect(4)"
-    //   class="black"
-    //   >★
-    // </span>
-    // <span
-    //   *ngIf="display > 4"
-    //   (mouseenter)="hide(5)"
-    //   (mouseleave)="show(4)"
-    //   (click)="onSelect(5)"
-    //   class="black"
-    //   >★
-    // </span>
