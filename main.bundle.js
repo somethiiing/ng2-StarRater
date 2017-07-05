@@ -29,13 +29,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'app';
+        this.noDefaultRater = 0;
+        this.withDefaultRater = 4;
     }
+    AppComponent.prototype.onNoDefaultRaterSelection = function (num) {
+        this.noDefaultRater = num;
+    };
+    AppComponent.prototype.onWithDefaultRaterSelection = function (num) {
+        this.withDefaultRater = num;
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_1" /* Component */])({
         selector: 'app-root',
-        template: "\n    <div>Click on a Star!</div>\n    <star-rater></star-rater>\n    <br>\n    <br>\n    <br>\n    <div>Defaults work as well!</div>\n    <star-rater\n      [display]=\"4\"\n    ></star-rater>\n  ",
+        template: "\n    <h1>Star Rater!</h1>\n    <div>Click on a Star to select a rating!</div>\n    <star-rater\n      (selection)=onNoDefaultRaterSelection($event)\n    ></star-rater>\n    <br>\n    <p>You selected {{noDefaultRater}} out of 5 stars.</p>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div>Defaults work as well!</div>\n    <star-rater\n      [display]=\"4\"\n      (selection)=\"onWithDefaultRaterSelection($event)\"\n    ></star-rater>\n    <p>You selected {{withDefaultRater}} out of 5 stars.</p>\n  ",
         styles: ['']
     })
 ], AppComponent);
@@ -116,15 +124,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var StarRater = (function () {
     function StarRater() {
         this.display = 0;
+        this.selection = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
     }
-    StarRater.prototype.hide = function (num) {
-        this.display = num;
-    };
-    StarRater.prototype.show = function (num) {
-        this.display = 0;
-    };
     StarRater.prototype.onSelect = function (num) {
         this.display = num;
+        this.selection.emit(this.display);
     };
     return StarRater;
 }());
@@ -132,54 +136,18 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Input */])(),
     __metadata("design:type", Object)
 ], StarRater.prototype, "display", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Output */])(),
+    __metadata("design:type", Object)
+], StarRater.prototype, "selection", void 0);
 StarRater = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_1" /* Component */])({
         selector: 'star-rater',
         template: "\n    <span\n      *ngIf=\"display > 0\"\n      (click)=\"onSelect(1)\"\n      class=\"black\"\n      >\u2605\n    </span>\n    <span\n      *ngIf=\"display > 1\"\n      (click)=\"onSelect(2)\"\n      class=\"black\"\n      >\u2605\n    </span>\n    <span\n      *ngIf=\"display > 2\"\n      (click)=\"onSelect(3)\"\n      class=\"black\"\n      >\u2605\n    </span>\n    <span\n      *ngIf=\"display > 3\"\n      (click)=\"onSelect(4)\"\n      class=\"black\"\n      >\u2605\n    </span>\n    <span\n      *ngIf=\"display > 4\"\n      (click)=\"onSelect(5)\"\n      class=\"black\"\n      >\u2605\n    </span>\n    <span\n      [hidden]=\"display > 0\"\n      (click)=\"onSelect(1)\"\n      class=\"white\"\n      >\u2606\n    </span>\n    <span\n      [hidden]=\"display > 1\"\n      (click)=\"onSelect(2)\"\n      class=\"white\"\n      >\u2606\n    </span>\n    <span\n      [hidden]=\"display > 2\"\n      (click)=\"onSelect(3)\"\n      class=\"white\"\n      >\u2606\n    </span>\n    <span\n      [hidden]=\"display > 3\"\n      (click)=\"onSelect(4)\"\n      class=\"white\"\n      >\u2606\n    </span>\n    <span\n      [hidden]=\"display > 4\"\n      (click)=\"onSelect(5)\"\n      class=\"white\"\n      >\u2606\n    </span>\n  ",
         styles: ['']
     })
 ], StarRater);
 
-// <span
-//   *ngIf="display > 0"
-//   (mouseenter)="hide(1)"
-//   (mouseleave)="show(0)"
-//   (click)="onSelect(1)"
-//   class="black"
-//   >★
-// </span>
-// <span
-//   *ngIf="display > 1"
-//   (mouseenter)="hide(2)"
-//   (mouseleave)="show(1)"
-//   (click)="onSelect(2)"
-//   class="black"
-//   >★
-// </span>
-// <span
-//   *ngIf="display > 2"
-//   (mouseenter)="hide(3)"
-//   (mouseleave)="show(2)"
-//   (click)="onSelect(3)"
-//   class="black"
-//   >★
-// </span>
-// <span
-//   *ngIf="display > 3"
-//   (mouseenter)="hide(4)"
-//   (mouseleave)="show(3)"
-//   (click)="onSelect(4)"
-//   class="black"
-//   >★
-// </span>
-// <span
-//   *ngIf="display > 4"
-//   (mouseenter)="hide(5)"
-//   (mouseleave)="show(4)"
-//   (click)="onSelect(5)"
-//   class="black"
-//   >★
-// </span>
 //# sourceMappingURL=starRating.js.map
 
 /***/ }),
